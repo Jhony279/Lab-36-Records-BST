@@ -153,10 +153,18 @@ void IntBinaryTree::makeDeletion(TreeNode *&nodePtr) {
          tempNodePtr = tempNodePtr->left;
       // Reattach the left subtree.
       tempNodePtr->left = nodePtr->left;
-      tempNodePtr = nodePtr;
-      // Reattach the right subtree.
-      nodePtr = nodePtr->right;
-      delete tempNodePtr;
+      // If successor is not the immediate right child, reattach its right subtree
+      if (tempNodePtr != nodePtr->right) {
+         TreeNode *parentOfSuccessor = nodePtr->right;
+         while (parentOfSuccessor->left != tempNodePtr)
+            parentOfSuccessor = parentOfSuccessor->left;
+         parentOfSuccessor->left = tempNodePtr->right;
+         tempNodePtr->right = nodePtr->right;
+      }
+      TreeNode *nodeToDelete = nodePtr;
+      // Replace the node to be deleted with its successor.
+      nodePtr = tempNodePtr;
+      delete nodeToDelete;
    }
 }
 
