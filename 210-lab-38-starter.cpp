@@ -41,7 +41,22 @@ int main() {
                 break;
 
             case 4:
+                cout << "Enter code to modify --> ";
+                cin >> code;
+                if (tree.searchNode(code)) {
+                    cout << "Found " << code << " in the tree.\n";
+                    cout << "Enter new code --> ";
+                    string new_code;
+                    cin >> new_code;
+                    tree.remove(code);
+                    tree.insertNode(new_code);
+                } else
+                    cout << code << " is not in the tree.\n";
                 break;
+
+            case 5:
+                again = false;
+            break;
 
             default:
                 cout << "\nInvalid selection.\n";
