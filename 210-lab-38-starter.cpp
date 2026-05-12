@@ -3,7 +3,7 @@
 #include <string>
 using namespace std;
 
-const int MAX_OPTIONS = 4;
+const int MAX_OPTIONS = 5;
 
 int main_menu();
 
@@ -16,6 +16,25 @@ int main() {
     tree.displayPreOrder();
     tree.displayPostOrder();
 
+    while (again) {
+        int sel = main_menu();
+        switch (sel) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+
+            case 4:
+                break;
+
+            default:
+                cout << "\nInvalid selection.\n";
+                break;
+        }
+    }
+
     return 0;
 }
 
@@ -25,6 +44,7 @@ int main_menu() {
     cout << "[2] Delete Node\n";
     cout << "[2] Search Node\n";
     cout << "[4] Modify Node\n";
+    cout << "[5] Quit\n";
     cout << "Choice --> ";
 
     int choice;
