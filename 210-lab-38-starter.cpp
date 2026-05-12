@@ -20,10 +20,24 @@ int main() {
         int sel = main_menu();
         switch (sel) {
             case 1:
+                cout << "Enter code to add --> ";
+                cin >> code;
+                tree.insertNode(code);
                 break;
+
             case 2:
+                cout << "Enter code to delete --> ";
+                cin >> code;
+                tree.remove(code);
                 break;
+
             case 3:
+                cout << "Enter code to search --> ";
+                cin >> code;
+                if (tree.searchNode(code))
+                    cout << "Found " << code << " in the tree.\n";
+                else
+                    cout << code << " is not in the tree.\n";
                 break;
 
             case 4:
