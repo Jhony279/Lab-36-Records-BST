@@ -1,6 +1,7 @@
 #include <iostream>
 #include "IntBinaryTree.h"
 #include <string>
+#include <fstream>
 using namespace std;
 
 const int MAX_OPTIONS = 5;
@@ -8,14 +9,26 @@ const int MAX_OPTIONS = 5;
 int main_menu();
 
 int main() {
-    IntBinaryTree tree;
-    bool again = true;
+    IntBinaryTree tree; // Create a IntBinaryTree  instance.
+    bool again = true;  // Variable to control the main menu loop.
     string code;
 
-    tree.displayInOrder();
-    tree.displayPreOrder();
-    tree.displayPostOrder();
+    // Load codes from codes.txt file
+    ifstream inFile("codes.txt");
+    if (inFile.is_open()) {
+        cout << "Loading codes from file...\n";
+        while (getline(inFile, code)) {
+            if (!code.empty()) {  // Skip empty lines
+                tree.insertNode(code);
+            }
+        }
+        inFile.close();
+        cout << "File loaded successfully.\n\n";
+    } else {
+        cout << "Could not open codes.txt file.\n";
+    }
 
+    // Main menu loop
     while (again) {
         int sel = main_menu();
         switch (sel) {
@@ -63,7 +76,6 @@ int main() {
                 break;
         }
     }
-
     return 0;
 }
 
